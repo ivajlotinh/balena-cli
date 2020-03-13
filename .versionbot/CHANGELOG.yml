@@ -1,4 +1,16 @@
 - commits:
+    - subject: 'Convert command `scan` to TypeScript, migrate to oclif'
+      hash: 97b7fba4dc8727670874aed062a164e562b44dd9
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Scott Lowe <scott@balena.io>
+        signed-off-by: Scott Lowe <scott@balena.io>
+      author: Scott Lowe
+  version: 11.29.4
+  date: 2020-03-13T17:17:14.174Z
+- commits:
     - subject: Remove unused typings
       hash: 505c3ec7d3bdf42eae5b15a3b8778dd38f467bd4
       body: ''
