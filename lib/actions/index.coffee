@@ -23,7 +23,6 @@ module.exports =
 	keys: require('./keys')
 	logs: require('./logs')
 	local: require('./local')
-	scan: require('./scan')
 	notes: require('./notes')
 	help: require('./help')
 	os: require('./os')

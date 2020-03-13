@@ -30,3 +30,5 @@ export interface BuildDockerOptions {
 export function getDocker(
 	options: BuildDockerOptions,
 ): Bluebird<DockerToolbelt>;
+
+export function createClient(opts: any): DockerToolbelt;
