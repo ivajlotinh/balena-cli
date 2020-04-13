@@ -293,10 +293,7 @@ export function awaitDeviceOsUpdate(uuid: string, targetOsVersion: string) {
 				balena.models.device.getOsUpdateStatus(uuid),
 				balena.models.device.get(uuid).then(getDeviceOsProgress),
 			]).then(([osUpdateStatus, osUpdateProgress]) => {
-				if (
-					osUpdateStatus.status === 'update_done' ||
-					osUpdateStatus.status === 'done'
-				) {
+				if (osUpdateStatus.status === 'done') {
 					console.info(
 						`The device ${deviceName} has been updated to v${targetOsVersion} and will restart shortly!`,
 					);
