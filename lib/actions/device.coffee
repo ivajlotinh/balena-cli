@@ -87,32 +87,49 @@ exports.info =
 		normalizeUuidProp(params)
 		balena = getBalenaSdk()
 
-		balena.models.device.get(params.uuid, expandForAppName)
-		.then (device) ->
-			balena.models.device.getStatus(device).then (status) ->
-				device.status = status
-				device.dashboard_url = balena.models.device.getDashboardUrl(device.uuid)
-				device.application_name =
-					if device.belongs_to__application?[0] then device.belongs_to__application[0].app_name else 'N/a'
-				device.commit = device.is_on__commit
-
-				console.log getVisuals().table.vertical device, [
-					"$#{device.device_name}$"
+		balena.models.device.get(params.uuid,
+			Object.assign({
+				$select: [
 					'id'
+					'uuid'
+					'device_name'
 					'device_type'
-					'status'
+					'overall_status'
 					'is_online'
 					'ip_address'
-					'application_name'
 					'last_seen'
-					'uuid'
-					'commit'
+					'is_on__commit'
 					'supervisor_version'
 					'is_web_accessible'
 					'note'
 					'os_version'
-					'dashboard_url'
 				]
+			}, expandForAppName)
+		)
+		.then (device) ->
+			device.status = device.overall_status
+			device.dashboard_url = balena.models.device.getDashboardUrl(device.uuid)
+			device.application_name =
+				if device.belongs_to__application?[0] then device.belongs_to__application[0].app_name else 'N/a'
+			device.commit = device.is_on__commit
+
+			console.log getVisuals().table.vertical device, [
+				"$#{device.device_name}$"
+				'id'
+				'device_type'
+				'status'
+				'is_online'
+				'ip_address'
+				'application_name'
+				'last_seen'
+				'uuid'
+				'commit'
+				'supervisor_version'
+				'is_web_accessible'
+				'note'
+				'os_version'
+				'dashboard_url'
+			]
 
 exports.register =
 	signature: 'device register <application>'
