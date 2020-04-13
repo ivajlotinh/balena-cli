@@ -36,7 +36,7 @@ Examples:
 	},
 };
 
-export const info: CommandDefinition<{ id: string }> = {
+export const info: CommandDefinition<{ id: number }> = {
 	signature: 'key <id>',
 	description: 'list a single ssh key',
 	help: `\
@@ -60,7 +60,7 @@ Examples:
 };
 
 export const remove: CommandDefinition<
-	{ id: string },
+	{ id: number },
 	commandOptions.YesOption
 > = {
 	signature: 'key rm <id>',
